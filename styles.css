@@ -1,0 +1,59 @@
+*{box-sizing:border-box}html,body{margin:0;padding:0}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;color:#0f172a;background:#ffffff;line-height:1.5}
+:root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--accent:#2563eb;--accent-600:#1d4ed8;--alt:#f8fafc;--border:#e2e8f0;--danger:#ef4444}
+.container{max-width:1100px;margin:0 auto;padding:0 1rem}
+.site-header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--border);z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.75rem 1rem}
+.brand{font-weight:700;font-size:1.25rem;color:var(--fg)}
+.nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:.5rem;padding:.35rem .5rem;font-size:1.1rem}
+.nav-links{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
+.nav-links a{color:var(--fg);text-decoration:none;padding:.5rem .75rem;border-radius:.5rem}
+.nav-links a:hover{background:var(--alt)}
+.section{padding:3rem 0}
+.section.alt{background:var(--alt)}
+.hero{background:linear-gradient(180deg,#eff6ff,#ffffff)}
+.hero h1{font-size:2.25rem;margin:.25rem 0}
+.hero p{color:var(--muted);margin:.5rem 0 1.25rem}
+.cta .btn{font-size:1.1rem}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.card{border:1px solid var(--border);border-radius:.75rem;padding:1rem;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.field{display:flex;flex-direction:column;gap:.35rem;margin:.5rem 0}
+.field span{font-size:.9rem;color:var(--muted)}
+.field input,.field textarea, .field select{border:1px solid var(--border);border-radius:.5rem;padding:.6rem .7rem;font-size:1rem}
+.check{display:flex;align-items:center;gap:.5rem;margin:.5rem 0;color:var(--muted)}
+.inline{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.pill{background:#eef2ff;color:#3730a3;border:1px solid #e0e7ff;border-radius:999px;padding:.2rem .6rem;font-size:.85rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:1px solid var(--border);background:#fff;color:var(--fg);padding:.6rem .9rem;border-radius:.6rem;cursor:pointer}
+.btn:hover{background:#f8fafc}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent-600);border-color:var(--accent-600)}
+.btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+.tabs{display:flex;gap:.5rem;margin:.25rem 0 .75rem}
+.tab-btn{border:1px solid var(--border);background:#fff;padding:.45rem .8rem;border-radius:.5rem;cursor:pointer}
+.tab-btn.active{background:#111827;color:#fff;border-color:#111827}
+.panel.hidden{display:none}
+.hint{font-size:.85rem;color:var(--muted);margin:.25rem 0}
+.preview{font-size:.9rem;color:var(--muted);border:1px dashed var(--border);padding:.6rem;border-radius:.5rem;min-height:2.2rem}
+.actions{display:flex;align-items:flex-end;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
+.status{margin-top:1rem;border-top:1px solid var(--border);padding-top:.75rem}
+#progress{font-weight:600}
+.log{list-style:none;margin:.5rem 0 0;padding:0;max-height:160px;overflow:auto;border:1px solid var(--border);border-radius:.5rem}
+.log li{padding:.45rem .6rem;border-bottom:1px solid var(--border);font-size:.9rem}
+.log li:last-child{border-bottom:none}
+.features-list{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem 1rem;margin:.75rem 0 0;padding:0;list-style:disc inside}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.contact-status{margin-top:.75rem;font-size:.95rem}
+.site-footer{border-top:1px solid var(--border);padding:1rem 0;color:var(--muted)}
+
+@media (max-width: 900px){
+  .grid{grid-template-columns:1fr 1fr}
+  .features-list{grid-template-columns:1fr}
+}
+@media (max-width: 680px){
+  .nav-toggle{display:block}
+  .nav-links{position:absolute;top:56px;right:8px;background:#fff;border:1px solid var(--border);border-radius:.75rem;flex-direction:column;min-width:200px;padding:.5rem;display:none}
+  .nav-links.open{display:flex}
+  .grid{grid-template-columns:1fr}
+  .form .row{grid-template-columns:1fr}
+  .hero h1{font-size:1.75rem}
+}
+

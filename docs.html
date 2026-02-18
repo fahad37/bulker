@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Documentation for BulkMailer: setup, deployment, and troubleshooting." />
+  <title>BulkMailer Docs</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <div class="brand">BulkMailer</div>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1>Documentation</h1>
+        <p>This guide covers setup, usage, deployment, and troubleshooting.</p>
+        <h2>CSV Format</h2>
+        <ul>
+          <li>Headers: email,name</li>
+          <li>Saved as UTF-8 CSV</li>
+          <li>Example rows: alice@example.com,Alice</li>
+        </ul>
+        <h2>Personalization</h2>
+        <ul>
+          <li>Use placeholders like {{name}} in subject and message</li>
+          <li>Missing fields render as empty strings</li>
+        </ul>
+        <h2>Sending via EmailJS</h2>
+        <ol>
+          <li>Create an EmailJS account and add an Email Service</li>
+          <li>Create an email Template with variables: to_email, to_name, subject, message, from_name</li>
+          <li>Copy your Public Key, Service ID, and Template ID</li>
+          <li>In the app, select EmailJS and paste these values</li>
+          <li>Use Send Test before bulk sending</li>
+        </ol>
+        <h2>Direct SMTP</h2>
+        <ul>
+          <li>Enter SMTP host, username (your email), and an app password</li>
+          <li>Set port 465 or 587. Some providers block direct SMTP from browsers</li>
+          <li>If sending fails, prefer EmailJS or a server-side relay</li>
+        </ul>
+        <h2>GitHub Pages Deployment</h2>
+        <ol>
+          <li>Create a new repository on GitHub</li>
+          <li>Add index.html, styles.css, app.js, and this docs.html</li>
+          <li>Commit and push</li>
+          <li>Open Settings → Pages → Build and deployment → Source: Deploy from a branch; Branch: main / root</li>
+          <li>Wait for Pages to publish and open the provided URL</li>
+        </ol>
+        <h2>Live Server</h2>
+        <ul>
+          <li>Upload the folder to any static host (Netlify, Vercel, shared hosting)</li>
+          <li>Ensure all files are in the same directory</li>
+        </ul>
+        <h2>Troubleshooting</h2>
+        <ul>
+          <li>CSV fails to parse: ensure headers are exactly email,name; save as CSV</li>
+          <li>EmailJS fails: verify public key, service id, template id; check allowed domains</li>
+          <li>SMTP fails: confirm app password is active; some providers disallow browser SMTP</li>
+          <li>Rate limits: increase Send Delay or send in smaller batches</li>
+        </ul>
+        <h2>Security Notes</h2>
+        <ul>
+          <li>Credentials are used in-memory and not stored by the app</li>
+          <li>Use per-app passwords and avoid shared devices</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="yearDoc"></span> BulkMailer</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('yearDoc').textContent = new Date().getFullYear();
+  </script>
+  <noscript>JavaScript improves this page.</noscript>
+  </body>
+  </html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Responsive bulk email sender: upload CSV, personalize, and send via EmailJS or SMTP with app passwords. Works on GitHub Pages and live servers." />
+  <meta name="keywords" content="bulk email, smtp, emailjs, csv upload, app password" />
+  <title>Bulk Email Sender</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <div class="brand">BulkMailer</div>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section hero">
+      <div class="container">
+        <h1>Send Personalized Bulk Emails</h1>
+        <p>Upload a CSV, personalize content, and send via SMTP or EmailJS.</p>
+        <div class="cta">
+          <a href="#sender" class="btn primary">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="sender" class="section sender">
+      <div class="container">
+        <h2>Bulk Sender</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Recipients</h3>
+            <label class="field">
+              <span>CSV File</span>
+              <input type="file" id="csvFile" accept=".csv" />
+            </label>
+            <p class="hint">Expected headers: email,name</p>
+            <div id="csvPreview" class="preview"></div>
+          </div>
+
+          <div class="card">
+            <h3>Email Content</h3>
+            <label class="field">
+              <span>From Name</span>
+              <input type="text" id="fromName" placeholder="Your name or brand" />
+            </label>
+            <label class="field">
+              <span>Subject</span>
+              <input type="text" id="subject" placeholder="Subject line" />
+            </label>
+            <label class="field">
+              <span>Message</span>
+              <textarea id="message" rows="8" placeholder="Hi {{name}}, ..."></textarea>
+            </label>
+            <div class="inline">
+              <div class="pill">Available placeholders: {{name}}</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Sending Method</h3>
+            <div class="tabs">
+              <button data-tab="emailjs" class="tab-btn active">EmailJS</button>
+              <button data-tab="smtp" class="tab-btn">Direct SMTP</button>
+            </div>
+
+            <div id="emailjsPanel" class="panel">
+              <label class="field">
+                <span>EmailJS Public Key</span>
+                <input type="text" id="ejPublicKey" placeholder="e.g., AbCdEf..." />
+              </label>
+              <label class="field">
+                <span>Service ID</span>
+                <input type="text" id="ejServiceId" placeholder="service_xxx" />
+              </label>
+              <label class="field">
+                <span>Template ID</span>
+                <input type="text" id="ejTemplateId" placeholder="template_xxx" />
+              </label>
+              <p class="hint">Template variables: to_email, to_name, subject, message, from_name</p>
+            </div>
+
+            <div id="smtpPanel" class="panel hidden">
+              <label class="field">
+                <span>SMTP Host</span>
+                <input type="text" id="smtpHost" placeholder="smtp.example.com" />
+              </label>
+              <label class="field">
+                <span>SMTP Port</span>
+                <input type="number" id="smtpPort" placeholder="465 or 587" />
+              </label>
+              <label class="check">
+                <input type="checkbox" id="smtpSecure" checked />
+                <span>Use TLS/SSL</span>
+              </label>
+              <label class="field">
+                <span>Username (Email)</span>
+                <input type="email" id="smtpUser" placeholder="you@example.com" />
+              </label>
+              <label class="field">
+                <span>App Password</span>
+                <input type="password" id="smtpPass" placeholder="App password" />
+              </label>
+              <label class="field">
+                <span>Send Delay (ms)</span>
+                <input type="number" id="sendDelay" value="1000" />
+              </label>
+              <p class="hint">Use an app password and avoid shared devices.</p>
+            </div>
+
+            <div class="actions">
+              <label class="field inline">
+                <span>Test Email</span>
+                <input type="email" id="testEmail" placeholder="test@recipient.com" />
+              </label>
+              <button id="sendTest" class="btn">Send Test</button>
+              <button id="sendBulk" class="btn primary">Send Bulk</button>
+              <button id="cancelSend" class="btn danger">Cancel</button>
+            </div>
+
+            <div class="status">
+              <div id="progress">Ready</div>
+              <ul id="log" class="log"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2>Features</h2>
+        <ul class="features-list">
+          <li>User-friendly email composition interface</li>
+          <li>CSV upload for bulk recipients</li>
+          <li>Personalization with placeholders</li>
+          <li>SMTP configuration support</li>
+          <li>Works with app passwords</li>
+        </ul>
+        <div class="howto">
+          <h3>How To Use</h3>
+          <ol>
+            <li>Prepare a CSV with headers: email,name.</li>
+            <li>Upload the CSV in Recipients.</li>
+            <li>Write your subject and message. Use {{name}} to personalize.</li>
+            <li>Choose EmailJS or Direct SMTP and fill required fields.</li>
+            <li>Use Send Test to verify, then Send Bulk.</li>
+          </ol>
+          <h3>Deployment</h3>
+          <p>GitHub Pages: Create a new repository, add these files, enable Pages from the repository settings with the main branch and root folder. Access the URL provided by GitHub.</p>
+          <p>Live server: Serve this folder with any static host such as Netlify, Vercel, or a simple static server.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section alt">
+      <div class="container">
+        <h2>About</h2>
+        <p>This tool helps send personalized emails at scale from a browser without server-side code. Data stays in your session and credentials are not stored.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <form id="contactForm" class="form">
+          <div class="row">
+            <label class="field">
+              <span>Name</span>
+              <input type="text" id="cName" required />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" id="cEmail" required />
+            </label>
+          </div>
+          <label class="field">
+            <span>Subject</span>
+            <input type="text" id="cSubject" required />
+          </label>
+          <label class="field">
+            <span>Message</span>
+            <textarea id="cMessage" rows="6" required></textarea>
+          </label>
+          <button type="submit" class="btn primary">Send</button>
+          <div id="contactStatus" class="contact-status"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> BulkMailer • <a href="docs.html">Docs</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="app.js"></script>
+  <noscript>This application requires JavaScript.</noscript>
+</body>
+</html>
+
